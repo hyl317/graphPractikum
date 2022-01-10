@@ -341,22 +341,18 @@ def _find_min_candidate(candidates, D, V):
     for i in range(len(candidates)):
         outDegree[i] = 0
     for i, candidate1 in enumerate(candidates):
-        x1, y1, z1, *_ = candidate1
+        x1, y1, z1, u1, alpha1 = candidate1
+        delta_z1, _, delta_x1, delta_y1 = _compute_deltas(V, D, alpha1, x1, y1, z1, u1)
         x1, y1, z1 = V.index(x1), V.index(y1), V.index(z1) 
-        delta_z1 = D[x1, z1] + D[y1, z1] - D[x1, y1]
-        delta_y1 = D[y1, z1] + D[x1, y1] - D[z1, x1]
-        delta_x1 = D[x1, y1] + D[z1, x1] - D[y1, z1]
         triplet = [x1, y1, z1]
         triple_delta = [delta_x1, delta_y1, delta_z1]
         for j, candidate2 in enumerate(candidates):
             if i >= j:
                 continue
             else:
-                x2, y2, z2, *_ = candidate2
+                x2, y2, z2, u2, alpha2 = candidate2
+                delta_z2, _, delta_x2, delta_y2 = _compute_deltas(V, D, alpha2, x2, y2, z2, u2)
                 x2, y2, z2 = V.index(x2), V.index(y2), V.index(z2)
-                delta_z2 = D[x2, z2] + D[y2, z2] - D[x2, y2]
-                delta_y2 = D[y2, z2] + D[x2, y2] - D[z2, x2]
-                delta_x2 = D[x2, y2] + D[z2, x2] - D[y2, z2]
                 if x2 in triplet:
                     pos = triplet.index(x2)
                     if delta_x2 < triple_delta[pos]:
@@ -587,11 +583,11 @@ def recognize_and_compare(scenario, B=[], first_candidate_only=True, use_unknown
                 break
             recognition_tree = recognize(scenario.D, B=core_leaves, first_candidate_only=first_candidate_only, print_info=print_info)
             num_valid_ways = recognition_tree.root.valid_ways
-            print(f'set {core_leaves} as core_leaves, success? {num_valid_ways>0}')
+            #print(f'set {core_leaves} as core_leaves, success? {num_valid_ways>0}')
     t = time.time() - t1
     # extract the inferred sequence of R step
     if recognition_tree.root.valid_ways == 0:
-        print(f'recognition failed')
+        #print(f'recognition failed')
         return recognition_tree, t # we hit a deadend
     else:
         seq = []
@@ -616,7 +612,7 @@ def recognize_and_compare(scenario, B=[], first_candidate_only=True, use_unknown
         for item in seq:
             if item in history:
                 count += 1
-        print(f'number of common triples: {count}')
+        #print(f'number of common triples: {count}')
         init_quad_recovered = set(final_quad) == set([0,1,2,3])
-        print(f'init_quad_recovered: {init_quad_recovered}')
+        #print(f'init_quad_recovered: {init_quad_recovered}')
         return recognition_tree, t, count, init_quad_recovered

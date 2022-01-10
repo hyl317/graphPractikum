@@ -55,4 +55,4 @@ _minted*/
 # others
 testfile*
 *.DS_Store
-./simulations
+simulations/
