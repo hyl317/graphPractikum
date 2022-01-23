@@ -336,7 +336,6 @@ def _finalize_tree(recognition_tree):
     _sort_children(recognition_tree.root)
 
 def _find_min_candidate(candidates, D, V):
-    #print(candidates)
     outDegree = {}
     for i in range(len(candidates)):
         outDegree[i] = 0
@@ -373,18 +372,13 @@ def _find_min_candidate(candidates, D, V):
                         outDegree[j] += 1
     
     smallest_candidate = []
-    v_min = np.inf
-    k_min = None
     for k, v in outDegree.items():
         #print(f'{candidates[k]}: {v}')
-        if v < v_min:
-            v_min = v 
-            k_min = k
         if v == 0:
             smallest_candidate.append(candidates[k])
     if len(smallest_candidate) == 0:
-        print('cycle detected')
-        smallest_candidate.append(candidates[k_min]) # this is just a hack
+        print('no minimum candidates exist')
+        return None
     assert(len(smallest_candidate)>0) # otherwise we have a cycle!
     return smallest_candidate
                     
@@ -442,9 +436,11 @@ def recognize(D, B=[], first_candidate_only=False, use_spikes=False, print_info=
         if n > 4:
         
             candidates = _find_candidates(D, V, print_info)
-            if use_spikes:
+            if use_spikes and n > 5 :
                 totalCandidate = len(candidates)
                 candidates = _find_min_candidate(candidates, D, V)
+                if candidates == None:
+                    return recognition_tree # no minimum candidates exist, report a failure
                 #print(f'find {len(candidates)} min candidates from a total of {totalCandidate} candidates')
                 #print(f'min candidates: {candidates}')
             found_valid = False
