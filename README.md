@@ -1,4 +1,14 @@
-# Erdbeermet
+# Group 12, Graph Practikum
+This is the github repository for Group12.
+
+The wrapper function for running the recognition is called "recognize_and_compar" and is located inside the file recognition.py. We have documented this function pretty well so its usage should be rather straightforward.
+
+Its example usage can be found at simulate.ipynb. In this jupyter notebook we had the code we used for running WP2, WP3, WP4 plus the code used for simulating r-maps.
+
+Authors (alphabetically listed): Fabian Dannegger, Yilei Huang, Kilian Ilius, Robert Max Polter.
+
+
+<!-- # Erdbeermet
 
 A Python library for generating, visualizing, manipulating and recognizing type R (pseudo)metrics
 (German: **Er**zeugung, **D**arstellung, **Be**arbeitung und **E**rkennung von **R**-(Pseudo)**Met**riken).
@@ -233,4 +243,4 @@ The function `plot_box_graph` in the module `erdbeermet.visualize.BoxGraphVis` t
 
 What are R pseudometrics/matrices?
 
-* **Prohaska, S.J., Berkemer, S.J., Gärtner, F., Gatter, T., Retzlaff, N., The Students of the Graphs and Biological Networks Lab 2017, Höner zu Siederdissen, C., Stadler, P.F. (2017) Expansion of gene clusters, circular orders, and the shortest Hamiltonian path problem. Journal of Mathematical Biology. doi: 10.1007/s00285-017-1197-3.**
+* **Prohaska, S.J., Berkemer, S.J., Gärtner, F., Gatter, T., Retzlaff, N., The Students of the Graphs and Biological Networks Lab 2017, Höner zu Siederdissen, C., Stadler, P.F. (2017) Expansion of gene clusters, circular orders, and the shortest Hamiltonian path problem. Journal of Mathematical Biology. doi: 10.1007/s00285-017-1197-3.** -->
