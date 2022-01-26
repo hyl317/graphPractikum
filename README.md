@@ -5,6 +5,8 @@ The wrapper function for running the recognition is called "recognize_and_compar
 
 Its example usage can be found at simulate.ipynb. In this jupyter notebook we had the code we used for running WP2, WP3, WP4 plus the code used for simulating r-maps.
 
+We simulated 25k Rmaps for each combination of N (N=6,8,10) and simulation mode. For simulated R-maps that failed recognition, please see .zip file attached in the email. For each N and recognition algorihtm, we have prepared a .txt file that gives a summary statistics for each simulation mode. Due to excessive runtime, for WP3 random_block_leaves we only ran the recognition algoirthm on a subset of simulated R-maps. See details in the corresponding .txt file.
+
 Authors (alphabetically listed): Fabian Dannegger, Yilei Huang, Kilian Ilius, Robert Max Polter.
 
 
